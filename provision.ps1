@@ -14,10 +14,10 @@ function Install-Application($name, $url, $expectedHash, $expectedHashAlgorithm 
 # set keyboard layout.
 # NB you can get the name from the list:
 #      [Globalization.CultureInfo]::GetCultures('InstalledWin32Cultures') | Out-GridView
-Set-WinUserLanguageList pt-PT -Force
+Set-WinUserLanguageList en-US -Force
 
 # set the date format, number format, etc.
-Set-Culture pt-PT
+Set-Culture pl-PL
 
 # set the welcome screen culture and keyboard layout.
 # NB the .DEFAULT key is for the local SYSTEM account (S-1-5-18).
@@ -98,7 +98,7 @@ choco install -y classic-shell -installArgs ADDLOCAL=ClassicStartMenu
 
 # install Google Chrome.
 # see https://www.chromium.org/administrators/configuring-other-preferences
-choco install -y googlechrome
+choco install -y --ignore-checksums googlechrome
 $chromeLocation = 'C:\Program Files (x86)\Google\Chrome\Application'
 cp -Force GoogleChrome-external_extensions.json (Get-Item "$chromeLocation\*\default_apps\external_extensions.json").FullName
 cp -Force GoogleChrome-master_preferences.json "$chromeLocation\master_preferences"
@@ -120,6 +120,7 @@ choco install -y git --params '/GitOnlyOnPath /NoAutoCrlf'
 choco install -y gitextensions
 choco install -y meld
 choco install -y visualstudiocode
+choco install -y tortoisegit
 
 # install fiddler.
 (New-Object Net.WebClient).DownloadFile(
@@ -133,8 +134,8 @@ Update-SessionEnvironment
 
 # configure git.
 # see http://stackoverflow.com/a/12492094/477532
-git config --global user.name 'Rui Lopes'
-git config --global user.email 'rgl@ruilopes.com'
+git config --global user.name 'Robert Milowski'
+git config --global user.email 'robertmilowski@gmail.com'
 git config --global http.sslbackend schannel
 git config --global push.default simple
 git config --global core.autocrlf false
