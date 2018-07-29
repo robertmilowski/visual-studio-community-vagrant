@@ -22,7 +22,7 @@ function Install-ModifiedChocolateyPackage($name, $version, $checksum, [scriptbl
 # NB we have to install netfx-4.7.2-devpack manually, because for some odd reason,
 #    the setup is returning the -1073741819 (0xc0000005 STATUS_ACCESS_VIOLATION)
 #    exit code even thou it installs successfully.
-Install-ModifiedChocolateyPackage netfx-4.7.2-devpack 4.7.2.0 f55b99592230c1a5617d4be099789841aa209e9e05fc7eef9e2c750f5d9fe6a0 {
+Install-ModifiedChocolateyPackage netfx-4.7.2-devpack 4.7.2.20180712 142a56fa770f6398156ad6cd6c3c0f8a6aed91697b20fd3a96daa457a58d40e4 {
     Set-Content -Encoding Ascii `
         tools/ChocolateyInstall.ps1 `
         ((Get-Content tools/ChocolateyInstall.ps1) -replace '0, # success','0,-1073741819, # success')
@@ -51,8 +51,8 @@ choco install -y netfx-4.6.2-devpack
 # see https://docs.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio
 # see https://docs.microsoft.com/en-us/visualstudio/install/command-line-parameter-examples
 # see https://docs.microsoft.com/en-us/visualstudio/install/workload-and-component-ids
-$archiveUrl = 'https://download.visualstudio.microsoft.com/download/pr/12390459/045b56eb413191d03850ecc425172a7d/vs_Community.exe'
-$archiveHash = '5764159258ba5f95063c7a5007b3aeac688f57b3234ed86256d550cfea32497f'
+$archiveUrl = 'https://download.visualstudio.microsoft.com/download/pr/d125163a-cf26-489a-b62e-94995a66d7c5/1ff3b2c80236499af4ef5bd802277f64/vs_community.exe'
+$archiveHash = '09dcc321f8735d7a054054d91da0ab41df31ad62c4cfbe373943c94a88d1d1d6'
 $archiveName = Split-Path $archiveUrl -Leaf
 $archivePath = "$env:TEMP\$archiveName"
 Write-Host 'Downloading the Visual Studio Setup Bootstrapper...'

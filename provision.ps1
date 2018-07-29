@@ -108,13 +108,16 @@ cp -Force GoogleChrome-master_bookmarks.html "$chromeLocation\master_bookmarks.h
 choco install -y notepad2
 
 # install other useful applications and dependencies.
+# NB we ignore the sysinternals utilities checksums because they have no proper
+#    versioning and can be updated at any time, which would break this
+#    automatic installation.
 choco install -y baretail
 choco install -y dependencywalker
-choco install -y autoruns
 choco install -y processhacker
-choco install -y procexp
-choco install -y procmon
-choco install -y winobj
+choco install -y --ignore-checksums autoruns    # sysinternals.
+choco install -y --ignore-checksums procexp     # sysinternals.
+choco install -y --ignore-checksums procmon     # sysinternals.
+choco install -y --ignore-checksums winobj      # sysinternals.
 choco install -y 7zip
 choco install -y git --params '/GitOnlyOnPath /NoAutoCrlf'
 choco install -y gitextensions
@@ -149,18 +152,18 @@ git config --global mergetool.meld.cmd '\"C:/Program Files (x86)/Meld/Meld.exe\"
 
 # install .NET decompiler and deofuscator.
 # see https://github.com/0xd4d/dnSpy/releases
-# see https://ci.appveyor.com/project/0xd4d/dnspy/build/x.x.757
+# see https://ci.appveyor.com/project/0xd4d/dnspy/build/x.x.784
 Install-Application `
     dnSpy `
-    https://ci.appveyor.com/api/buildjobs/nwnilagwmt073h1y/artifacts/dnSpy%2FdnSpy%2Fbin%2FdnSpy.zip `
-    e04dd537f6b0da64b72000c963a3bb5796df54ff8e21d5de492f1cdc48929a56
+    https://ci.appveyor.com/api/buildjobs/j5twp46sa6r894s0/artifacts/dnSpy%2FdnSpy%2Fbin%2FdnSpy.zip `
+    2122b463bf021dda1ea6a4d7332dcf2e6a37c6e189736bc1cb0baaedd901febf
 Install-BinFile dnSpy 'C:\Program Files\dnSpy\dnSpy.exe'
 # see https://github.com/0xd4d/de4dot
-# see https://ci.appveyor.com/project/0xd4d/de4dot/build/x.x.37
+# see https://ci.appveyor.com/project/0xd4d/de4dot/build/x.x.42
 Install-Application `
     de4dot `
-    https://ci.appveyor.com/api/buildjobs/tfeaywh55gbf23dh/artifacts/de4dot.zip `
-    b319b76ac231cf079d23b08b66ec88b726c02815b66a31276247d11992dd7999
+    https://ci.appveyor.com/api/buildjobs/6s1s4f2a4171yn5k/artifacts/de4dot.zip `
+    09e300166f7a86eb2b20a984245781b5ce30509a82bc34bc2f7afbe0e537aef2
 Install-BinFile de4dot 'C:\Program Files\de4dot\de4dot.exe'
 
 # install msys2.
