@@ -124,7 +124,9 @@ choco install -y gitextensions
 choco install -y meld
 choco install -y visualstudiocode
 choco install -y tortoisegit
-
+choco install -y doublecmd
+choco install -y sql-server-express
+choco install -y sql-server-management-studio
 # install fiddler.
 (New-Object Net.WebClient).DownloadFile(
     'https://telerik-fiddler.s3.amazonaws.com/fiddler/FiddlerSetup.exe',
